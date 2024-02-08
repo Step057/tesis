@@ -1,3 +1,4 @@
+import SimpleCarousel from "./_components/carousel";
 const Inicio = () => {
   return (
     <div className="container my-3">
@@ -15,12 +16,19 @@ const Inicio = () => {
             institución particular de jornada matutina, sus funciones educativas
             las desempeñaba en horario nocturno.
           </p>
-          <img
+          <SimpleCarousel />
+          {/* <img
             src="https://docplayer.es/docs-images/78/77386390/images/15-0.jpg"
             alt="colegio"
-            style={{ width: "400px", display: "block", margin: "0 auto" }}
-          />
+            style={{
+              width: "400px",
+              display: "block",
+              margin: "0 auto",
+              borderRadius: "7%",
+            }}
+          /> */}
         </div>
+
         <div className="col-md-4">
           <h1> FUNDADORES </h1>
           <p>

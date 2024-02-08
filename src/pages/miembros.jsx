@@ -10,7 +10,12 @@ const Miembros = () => {
           <img
             src="https://pr0.nicelocal.ec/yN4MUQtDNYkLcBPFSqtPJA/1120x700,q85/4px-BW84_n0QJGVPszge3NRBsKw-2VcOifrJIjPYFYkOtaCZxxXQ2fmQdBglFIOEHDiuNamWXZlbGwZ4N8_aORGzl8gF_f022MouwS6l6u1VTG6AQPXN9Q"
             alt="direccion"
-            style={{ width: "500px", display: "block", margin: "0 auto" }}
+            style={{
+              width: "500px",
+              display: "block",
+              margin: "0 auto",
+              borderRadius: "7%",
+            }}
           />
         </div>
 
