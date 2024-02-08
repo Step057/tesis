@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../images/logo.jpg";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 const Header = () => {
   return (
     <div className="containerNavBar">
@@ -71,7 +70,7 @@ const Header = () => {
               style={{ borderRadius: "50%", position: "absolute", top: "0px" }}
             />
           </Link>
-          <div className=" titulo text-center">
+          <div className=" titulo text-center pt-4">
             <h1> UNIDAD EDUCATIVA DARIO FIGUEROA LARCO </h1>
           </div>
         </div>

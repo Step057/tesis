@@ -9,13 +9,18 @@ import Error404 from "./pages/Error404";
 import Registro from "./pages/registo";
 import Footer from "./pages/footer";
 import Clave from "./pages/clave";
+import Home from "./pages/home";
+import NavBar from "./pages/navBar";
 
 function App() {
   return (
     <div>
       <div className="text-light bg-success" style={{ minHeight: "100vh" }}>
         <BrowserRouter>
-          <Header />
+          <NavBar />
+          <div className=" titulo text-center pt-4">
+            <h1> UNIDAD EDUCATIVA DARIO FIGUEROA LARCO </h1>
+          </div>
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/miembros" element={<Miembros />} />
@@ -24,6 +29,7 @@ function App() {
             <Route path="/" element={<Error404 />} />
             <Route path="/registro" element={<Registro />} />
             <Route path="/clave" element={<Clave />} />
+            <Route path="/home" element={<Home />} />
           </Routes>
           <div
             style={{

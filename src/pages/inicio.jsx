@@ -16,7 +16,7 @@ const Inicio = () => {
             institución particular de jornada matutina, sus funciones educativas
             las desempeñaba en horario nocturno.
           </p>
-          <SimpleCarousel />
+
           {/* <img
             src="https://docplayer.es/docs-images/78/77386390/images/15-0.jpg"
             alt="colegio"
@@ -38,6 +38,7 @@ const Inicio = () => {
           </p>
         </div>
       </div>
+      <SimpleCarousel />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -82,8 +83,11 @@ const LoginForm = () => {
     setRememberMe(event.target.checked);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    navigate("/home");
   };
 
   return (
