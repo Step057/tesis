@@ -34,16 +34,6 @@ function App() {
       >
         <BrowserRouter>
           <NavBar />
-          <div className=" titulo text-center pt-4">
-            <h1
-              style={{
-                color: isVisible ? "#000" : "transparent",
-                transition: "color 1s ease-in-out",
-              }}
-            >
-              UNIDAD EDUCATIVA DARIO FIGUEROA LARCO
-            </h1>
-          </div>
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/miembros" element={<Miembros />} />

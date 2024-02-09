@@ -7,17 +7,27 @@ const Inicio = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsVisible(true);
-    }, 1000);
+    }, 300);
     return () => clearTimeout(timeout);
   }, []);
 
   return (
     <div className="container my-3">
       <div className="row">
+        <div className=" titulo text-center py-3">
+          <h1
+            style={{
+              color: isVisible ? "#000" : "transparent",
+              transition: "color 1s ease-in-out",
+            }}
+          >
+            UNIDAD EDUCATIVA DARIO FIGUEROA LARCO
+          </h1>
+        </div>
         <div
           className="col-md-8"
           style={{
-            color: isVisible ? "#000" : "transparent",
+            color: isVisible ? "#FFF" : "transparent",
             transition: "color 1s ease-in-out",
           }}
         >
@@ -49,7 +59,7 @@ const Inicio = () => {
         <div
           className="col-md-4"
           style={{
-            color: isVisible ? "#000" : "transparent",
+            color: isVisible ? "#FFF" : "transparent",
             transition: "color 1s ease-in-out",
           }}
         >
