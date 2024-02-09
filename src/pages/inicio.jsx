@@ -1,9 +1,26 @@
+import React, { useState, useEffect } from "react";
 import SimpleCarousel from "./_components/carousel";
+
 const Inicio = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className="container my-3">
       <div className="row">
-        <div className="col-md-8">
+        <div
+          className="col-md-8"
+          style={{
+            color: isVisible ? "#000" : "transparent",
+            transition: "color 1s ease-in-out",
+          }}
+        >
           <p>
             La Unidad Educativa "Darío Figueroa Larco" fue fundada el 9 de
             Octubre de 1975 por el Dr. Milton Ubidia. Con el pasar de los años,
@@ -29,7 +46,13 @@ const Inicio = () => {
           /> */}
         </div>
 
-        <div className="col-md-4">
+        <div
+          className="col-md-4"
+          style={{
+            color: isVisible ? "#000" : "transparent",
+            transition: "color 1s ease-in-out",
+          }}
+        >
           <h1> FUNDADORES </h1>
           <p>
             Lcdo. Gerardo Alcocer, Sra.Rosa Black, Sra. Consuelo Sosa, Sra.

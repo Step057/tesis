@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./pages/header";
 import Inicio from "./pages/inicio";
@@ -13,13 +14,35 @@ import Home from "./pages/home";
 import NavBar from "./pages/navBar";
 
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     <div>
-      <div className="text-light bg-success" style={{ minHeight: "100vh" }}>
+      <div
+        className="text-light"
+        style={{
+          minHeight: "100vh",
+          background: "linear-gradient(to right, #4f730d, #a9b88d)",
+        }}
+      >
         <BrowserRouter>
           <NavBar />
           <div className=" titulo text-center pt-4">
-            <h1> UNIDAD EDUCATIVA DARIO FIGUEROA LARCO </h1>
+            <h1
+              style={{
+                color: isVisible ? "#000" : "transparent",
+                transition: "color 1s ease-in-out",
+              }}
+            >
+              UNIDAD EDUCATIVA DARIO FIGUEROA LARCO
+            </h1>
           </div>
           <Routes>
             <Route path="/" element={<Inicio />} />

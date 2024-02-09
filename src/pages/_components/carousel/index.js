@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import image3 from "../../../images/imageDF.webp";
 
 const SimpleCarousel = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
   return (
     <Carousel
       style={{
-        width: "500px",
-        height: "340px",
+        width: isVisible ? "500px" : 0,
+        height: isVisible ? "340px" : 0,
         display: "block",
         margin: "20px auto",
         borderRadius: "7%",
+        overflow: "hidden",
+        transition: "width 1s, height 1s",
       }}
     >
       <Carousel.Item>
