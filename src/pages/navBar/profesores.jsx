@@ -66,7 +66,7 @@ const InputBox = styled.div`
   }
 `;
 
-const LoginForm = () => {
+const profesores = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -148,4 +148,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default profesores;
