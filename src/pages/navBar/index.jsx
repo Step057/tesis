@@ -82,7 +82,7 @@ const Index = () => {
                 <NavLink
                   className="dropdown-item"
                   activeClassName="active"
-                  to="/profesores"
+                  to="/Profesores"
                 >
                   Profesores
                 </NavLink>
