@@ -98,6 +98,7 @@ const LoginForm = () => {
           <div className="light"></div>
 
           <h2>Ingreso al portal</h2>
+          <h2>Alumnos</h2>
           <InputBox>
             <span className="icon">
               <ion-icon name="mail"></ion-icon>

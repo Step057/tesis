@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -83,11 +83,10 @@ const Profesores = () => {
     setRememberMe(event.target.checked);
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate("/home");
+    // Implementa aquí la lógica de autenticación, si es necesario
+    // Por ejemplo, enviar la solicitud al servidor para autenticar al usuario
+    // Una vez autenticado, redirige a la página de calificaciones
   };
 
   return (
@@ -98,6 +97,7 @@ const Profesores = () => {
           <div className="light"></div>
 
           <h2>Ingreso al portal</h2>
+          <h2>profesores </h2>
           <InputBox>
             <span className="icon">
               <ion-icon name="mail"></ion-icon>
@@ -136,7 +136,9 @@ const Profesores = () => {
             </label>
             <a href="/clave"> Olvidaste la contraseña?</a>
           </div>
-          <button type="submit">Login</button>
+          <Link to="/calificaciones" className="login" onClick={handleSubmit}>
+            Login
+          </Link>
           <div className="register-link">
             <p>
               No tienes cuenta aún? <a href="/Registro"> Registrate </a>

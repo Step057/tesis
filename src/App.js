@@ -13,6 +13,7 @@ import Clave from "./pages/clave";
 import Home from "./pages/home";
 import NavBar from "./pages/navBar";
 import Profesores from "./pages/profesores";
+import CalificacionesTabla from "./pages/calificaciones";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
@@ -45,6 +46,8 @@ function App() {
             <Route path="/clave" element={<Clave />} />
             <Route path="/home" element={<Home />} />
             <Route path="/profesores" element={<Profesores />} />
+
+            <Route path="/calificaciones" element={<CalificacionesTabla />} />
           </Routes>
           <div
             style={{
