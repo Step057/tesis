@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -70,6 +71,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [users, setUsers] = useState([]);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -87,8 +89,34 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/home");
+    if (
+      users?.find(
+        (user) => user.correo === email && user.contraseña === password
+      )
+    ) {
+      localStorage.setItem(
+        "myVariableKey",
+        users?.find(
+          (user) => user.correo === email && user.contraseña === password
+        )._id
+      );
+
+      navigate("/home");
+    } else {
+      console.log("userNotFound");
+    }
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/get")
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   return (
     <Container>

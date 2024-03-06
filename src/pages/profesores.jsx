@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -70,6 +72,8 @@ const Profesores = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -84,10 +88,36 @@ const Profesores = () => {
   };
 
   const handleSubmit = (event) => {
-    // Implementa aquí la lógica de autenticación, si es necesario
-    // Por ejemplo, enviar la solicitud al servidor para autenticar al usuario
-    // Una vez autenticado, redirige a la página de calificaciones
+    event.preventDefault();
+   
+    const userLogged = users?.find(
+      (user) =>
+        user.correo === email &&
+        user.contraseña === password &&
+        user.rol === "profesor"
+    );
+    if (userLogged) {
+      navigate("/calificaciones", {
+        state: {
+          mainUser: userLogged,
+        },
+      });
+    } else {
+      console.log("userNotFound");
+    }
   };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/get")
+      .then((response) => {
+        setUsers(response.data);
+        console.log("Response data:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
 
   return (
     <Container>
