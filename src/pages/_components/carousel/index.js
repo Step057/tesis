@@ -33,24 +33,18 @@ const SimpleCarousel = () => {
           height={300}
           style={{ borderRadius: "10px" }}
         />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>This is the first slide.</p>
-        </Carousel.Caption>
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://scontent-bog2-1.xx.fbcdn.net/v/t39.30808-6/279085681_2839313973041794_2689074611823802260_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=9534ce&_nc_ohc=YGJlN_F0mBEAX-bgYO2&_nc_ht=scontent-bog2-1.xx&oh=00_AfCxQQZ8kZ9wZ8RNxiHKCOCpg-sDlgjNJ8sh72UXmWLmQw&oe=65C87AD0"
+          src="https://image.isu.pub/180712160854-ad07afa4a53299afae4d78ec2351b12e/jpg/page_1.jpg"
           alt="Second slide"
           width={400}
           height={300}
           style={{ borderRadius: "10px" }}
         />
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>This is the second slide.</p>
-        </Carousel.Caption>
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
@@ -61,10 +55,7 @@ const SimpleCarousel = () => {
           height={300}
           style={{ borderRadius: "10px" }}
         />
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>This is the third slide.</p>
-        </Carousel.Caption>
+        <Carousel.Caption></Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );

@@ -65,7 +65,7 @@ const Index = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Alumnos
+                Portal
               </NavLink>
               <div
                 className="dropdown-menu"

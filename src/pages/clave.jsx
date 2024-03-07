@@ -27,7 +27,7 @@ const Clave = () => {
         />
       </div>
       <div className="col-auto">
-        <button type="submit" className="btn btn-dark mb-3">
+        <button type="submit" className="btn btn-dark btn-lg btn-block mb-3">
           Enviar nueva clave
         </button>
       </div>

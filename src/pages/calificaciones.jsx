@@ -4,7 +4,7 @@ import axios from "axios";
 import Modal from "./_components/modal";
 
 const CalificacionesTabla = () => {
-  const [notas, setNotas] = useState(Array(5).fill("")); // Estado para almacenar las notas ingresadas
+  const [notas, setNotas] = useState(Array(10).fill("")); // Estado para almacenar las notas ingresadas
   const [lista, setLista] = useState([]);
   const [subjectID, setSubjectID] = useState();
   const location = useLocation();
@@ -51,6 +51,11 @@ const CalificacionesTabla = () => {
       grade1: notas[1],
       grade2: notas[2],
       grade3: notas[3],
+      grade4: notas[4],
+      grade5: notas[5],
+      grade6: notas[6],
+      grade7: notas[7],
+      grade8: notas[8],
       total: total,
     };
     try {
@@ -78,8 +83,15 @@ const CalificacionesTabla = () => {
   };
 
   const total = (
-    (Number(notas[1]) + Number(notas[2]) + Number(notas[3])) /
-    3
+    (Number(notas[1]) +
+      Number(notas[2]) +
+      Number(notas[3]) +
+      Number(notas[4]) +
+      Number(notas[5]) +
+      Number(notas[6]) +
+      Number(notas[7]) +
+      Number(notas[8])) /
+    8
   ).toFixed(1);
   return (
     <div style={{ textAlign: "center" }}>
@@ -94,7 +106,7 @@ const CalificacionesTabla = () => {
         <thead style={{ backgroundColor: "white", color: "black" }}>
           <tr>
             <th rowSpan="2">Materia</th>
-            <th colSpan="6">Mis Notas</th>
+            <th colSpan="10">Mis Notas</th>
           </tr>
           <tr>
             <th>
@@ -102,9 +114,14 @@ const CalificacionesTabla = () => {
               <Modal />
             </th>
 
-            <th>T1</th>
-            <th>T2</th>
-            <th>T3</th>
+            <th scope="col">Nota 1</th>
+            <th scope="col">Nota 2</th>
+            <th scope="col">Nota 3</th>
+            <th scope="col">Examen 1</th>
+            <th scope="col">Nota 1</th>
+            <th scope="col">Nota 2</th>
+            <th scope="col">Nota 3</th>
+            <th scope="col">Examen 2</th>
             <th>Total</th>
           </tr>
         </thead>
@@ -115,7 +132,7 @@ const CalificacionesTabla = () => {
               <td key={index}>
                 <input
                   type="text"
-                  value={index !== 4 ? nota : total}
+                  value={index !== 9 ? nota : total}
                   onChange={(e) => handleChange(index, e.target.value)}
                   readOnly={!esProfesor()}
                   style={{ width: "6rem" }} // Establecer el ancho de donde van las notas
