@@ -89,7 +89,7 @@ const Profesores = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
+
     const userLogged = users?.find(
       (user) =>
         user.correo === email &&
@@ -166,9 +166,9 @@ const Profesores = () => {
             </label>
             <a href="/clave"> Olvidaste la contraseña?</a>
           </div>
-          <Link to="/calificaciones" className="login" onClick={handleSubmit}>
+          <button type="submit" className="login">
             Login
-          </Link>
+          </button>
           <div className="register-link">
             <p>
               No tienes cuenta aún? <a href="/Registro"> Registrate </a>

@@ -14,7 +14,9 @@ const Registro = () => {
 
     console.log("Form Data:", formData); // Log the object before sending
     if (Object.values(formData).every((value) => !value)) {
-      alert("Please fill out all required fields before submitting.");
+      alert(
+        "Rellene todos los campos obligatorios antes de enviar el formulario."
+      );
       return;
     }
 
@@ -31,14 +33,14 @@ const Registro = () => {
         response.statusText === "Created" &&
         responseSubject.statusText === "Created"
       ) {
-        console.log("Data saved successfully:");
+        console.log("Datos guardados correctamente:");
         if (formData.materia) {
           navigate("/profesores");
         } else {
           navigate("/alumnos");
         }
       } else {
-        console.error("Error saving data:", response.statusText);
+        console.error("Error al guardar los datos:", response.statusText);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -198,100 +200,16 @@ const Registro = () => {
                 />
               </div>
             )}
-            <div className="col-12">
-              <label htmlFor="inputAddress" className="form-label">
-                Dirección
-              </label>
-              <input
-                type="text"
-                className="form-control mb-3"
-                id="inputAddress"
-                placeholder="Sangolqui calle...."
-                name="direccion"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12">
-              <label htmlFor="inputAddress2" className="form-label">
-                Calle #2
-              </label>
-              <input
-                type="text"
-                className="form-control mb-3"
-                id="calle #2"
-                placeholder="Calle N"
-                name="calle_2"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-6">
-              <label htmlFor="inputCity" className="form-label">
-                Ciudad
-              </label>
-              <input
-                type="text"
-                className="form-control mb-3"
-                id="inputCity"
-                name="ciudad"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-md-4">
-              <label htmlFor="inputState" className="form-label">
-                Provincia
-              </label>
-              <select
-                id="inputState"
-                className="form-select mb-3"
-                name="provincia"
-                onChange={handleChange}
-              >
-                <option selected>Escoger...</option>
-                <option value="Azuay">Azuay</option>
-                <option value="Bolívar">Bolívar</option>
-                <option value="Cañar">Cañar</option>
-                <option value="Carchi">Carchi</option>
-                <option value="Chimborazo">Chimborazo</option>
-                <option value="Cotopaxi">Cotopaxi</option>
-                <option value="El Oro">El Oro</option>
-                <option value="Esmeraldas">Esmeraldas</option>
-                <option value="Galápagos">Galápagos</option>
-                <option value="Guayas">Guayas</option>
-                <option value="Imbabura">Imbabura</option>
-                <option value="Loja">Loja</option>
-                <option value="Los Ríos">Los Ríos</option>
-                <option value="Manabí">Manabí</option>
-                <option value="Morona Santiago">Morona Santiago</option>
-                <option value="Napo">Napo</option>
-                <option value="Orellana">Orellana</option>
-                <option value="Pastaza">Pastaza</option>
-                <option value="Pichincha">Pichincha</option>
-                <option value="Santa Elena">Santa Elena</option>
-                <option value="Santo Domingo de los Tsáchilas">
-                  Santo Domingo de los Tsáchilas
-                </option>
-                <option value="Sucumbíos">Sucumbíos</option>
-                <option value="Tungurahua">Tungurahua</option>
-                <option value="Zamora Chinchipe">Zamora Chinchipe</option>
-              </select>
-            </div>
-            <div className="col-md-2">
-              <label htmlFor="inputZip" className="form-label">
-                Código postal
-              </label>
-              <input
-                type="text"
-                className="form-control mb-3"
-                id="inputZip"
-                name="codigo_postal"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12">
-              <button type="submit" className="btn btn-outline-dark mb-3">
-                Registrarse
-              </button>
-            </div>
+          </div>
+
+          <div className="col-12">
+            <button
+              type="submit"
+              className="btn btn-outline-dark mb-3"
+              style={{ width: "200px", height: "50px" }}
+            >
+              Registrarse
+            </button>
           </div>
         </form>
       </div>
