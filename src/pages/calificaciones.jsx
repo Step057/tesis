@@ -5,6 +5,10 @@ import Modal from "./_components/modal";
 
 const CalificacionesTabla = () => {
   const [notas, setNotas] = useState(Array(10).fill("")); // Estado para almacenar las notas ingresadas
+  const [bestStudent, setBestStudent] = useState({});
+  const [worstStudent, setWorstStudent] = useState({});
+  const [bestStudentName, setBestStudentName] = useState();
+  const [worstStudentName, setWorstStudentName] = useState();
   const [lista, setLista] = useState([]);
   const [subjectID, setSubjectID] = useState();
   const location = useLocation();
@@ -44,6 +48,57 @@ const CalificacionesTabla = () => {
         console.error("Error:", error);
       });
   }, []);
+  console.log(subjectID);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/student/${subjectID}`)
+      .then((response) => {
+        setBestStudent(response.data);
+        console.log("resss", response?.data);
+      })
+      .catch((err) => {
+        console.log("error fetching max");
+      });
+    axios
+      .get(`http://localhost:3000/api/student/min/${subjectID}`)
+      .then((response) => {
+        setWorstStudent(response.data);
+        console.log("worstStudentData", response?.data);
+      })
+      .catch((err) => {
+        console.log("error fetching max");
+      });
+  }, [subjectID]);
+
+  useEffect(() => {
+    if (bestStudent) {
+      axios
+        .get(
+          `http://localhost:3000/api/getSingleStudent/${bestStudent?.studentId}`
+        )
+        .then((response) => {
+          setBestStudentName(response.data);
+          console.log("bestStudent", response?.data);
+        })
+        .catch((err) => {
+          console.log("error fetching max");
+        });
+    }
+    if (worstStudent) {
+      axios
+        .get(
+          `http://localhost:3000/api/getSingleStudent/${worstStudent?.studentId}`
+        )
+        .then((response) => {
+          setWorstStudentName(response.data);
+          console.log("worststudent", response?.data);
+        })
+        .catch((err) => {
+          console.log("error fetching max");
+        });
+    }
+  }, [bestStudent, worstStudent]);
 
   const subirNotas = async () => {
     const formData = {
@@ -142,6 +197,12 @@ const CalificacionesTabla = () => {
           </tr>
         </tbody>
       </table>
+      <div style={{ marginTop: "20px" }}>
+        Mejor Estudiante: {bestStudentName?.nombre} {bestStudentName?.apellido}
+      </div>
+      <div style={{ marginTop: "20px" }}>
+        Peor Estudiante: {worstStudentName?.nombre} {worstStudentName?.apellido}
+      </div>
       <button onClick={subirNotas} style={{ marginTop: "100px" }}>
         Subir Nota
       </button>
