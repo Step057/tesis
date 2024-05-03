@@ -32,10 +32,11 @@ const CalificacionesTabla = () => {
       }
     }
   };
-
+  console.log("mainUser", mainUser);
+  console.log("lista", lista);
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/student")
+      .get("http://localhost:3000/api/subject")
       .then((response) => {
         setLista(response.data);
         setSubjectID(
@@ -51,8 +52,9 @@ const CalificacionesTabla = () => {
   console.log(subjectID);
 
   useEffect(() => {
+    //BEST STUDENT
     axios
-      .get(`http://localhost:3000/api/student/${subjectID}`)
+      .get(`http://localhost:3000/api/subject/${subjectID}`)
       .then((response) => {
         setBestStudent(response.data);
         console.log("resss", response?.data);
@@ -60,8 +62,9 @@ const CalificacionesTabla = () => {
       .catch((err) => {
         console.log("error fetching max");
       });
+    //WORST STUDENT
     axios
-      .get(`http://localhost:3000/api/student/min/${subjectID}`)
+      .get(`http://localhost:3000/api/subject/min/${subjectID}`)
       .then((response) => {
         setWorstStudent(response.data);
         console.log("worstStudentData", response?.data);
@@ -73,6 +76,7 @@ const CalificacionesTabla = () => {
 
   useEffect(() => {
     if (bestStudent) {
+      //BESTSTUDENT DATA
       axios
         .get(
           `http://localhost:3000/api/getSingleStudent/${bestStudent?.studentId}`
@@ -86,6 +90,7 @@ const CalificacionesTabla = () => {
         });
     }
     if (worstStudent) {
+      //WORST STUDENT DATA
       axios
         .get(
           `http://localhost:3000/api/getSingleStudent/${worstStudent?.studentId}`
@@ -117,7 +122,7 @@ const CalificacionesTabla = () => {
       console.log("sending", subjectID);
       //TODO: search by userNickname then find id
       const response = await axios.put(
-        `http://localhost:3000/api/student/update/${subjectID}`,
+        `http://localhost:3000/api/subject/update/${subjectID}`,
         formData
       );
       console.log("response", response);

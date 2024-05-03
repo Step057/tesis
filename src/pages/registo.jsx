@@ -21,12 +21,13 @@ const Registro = () => {
     }
 
     try {
+      console.log("trying");
       const response = await axios.post(
         "http://localhost:3000/api/save",
         formData
       );
       const responseSubject = await axios.post(
-        "http://localhost:3000/api/student/save",
+        "http://localhost:3000/api/subject/save",
         subject
       );
       if (

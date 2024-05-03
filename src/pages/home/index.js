@@ -4,13 +4,31 @@ import axios from "axios";
 const StudentsTable = () => {
   const [students, setStudents] = useState([]);
   const [myGrade, setMyGrade] = useState();
+  const [filteredData, setFilteredData] = useState([]);
   const mainUser = localStorage.getItem("myVariableKey");
-
+  let data = [];
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/student")
+      .get("http://localhost:3000/api/subject")
       .then((response) => {
         setStudents(response.data);
+        let data = [];
+
+        response.data
+          .filter((item, index) =>
+            item.students.find((grade) => grade.studentId === mainUser)
+          )
+          ?.forEach((course) => {
+            course?.students?.forEach((student) => {
+              if (student?.studentId === mainUser) {
+                console.log("dataFiltered", data);
+                setFilteredData({ ...filteredData, student: student });
+                data?.push({ student, name: course?.name });
+              }
+            });
+          });
+        setFilteredData(data);
+
         setMyGrade(
           response.data.find((item) =>
             item.students.find((grade) => grade.studentId === mainUser)
@@ -21,18 +39,19 @@ const StudentsTable = () => {
         console.error("Error:", error);
       });
   }, []);
+
   const renderRow = (grade) => (
     <tr>
-      <th scope="row">{myGrade?.name}</th>
-      <td>{grade?.grade1}</td>
-      <td>{grade?.grade2}</td>
-      <td>{grade?.grade3}</td>
-      <td>{grade?.grade4}</td>
-      <td>{grade?.grade5}</td>
-      <td>{grade?.grade6}</td>
-      <td>{grade?.grade7}</td>
-      <td>{grade?.grade8}</td>
-      <td>{grade?.total}</td>
+      <th scope="row">{grade?.name}</th>
+      <td>{grade?.student?.grade1}</td>
+      <td>{grade?.student?.grade2}</td>
+      <td>{grade?.student?.grade3}</td>
+      <td>{grade?.student?.grade4}</td>
+      <td>{grade?.student?.grade5}</td>
+      <td>{grade?.student?.grade6}</td>
+      <td>{grade?.student?.grade7}</td>
+      <td>{grade?.student?.grade8}</td>
+      <td>{grade?.student?.total}</td>
     </tr>
   );
   const imprimir = () => {
@@ -58,10 +77,8 @@ const StudentsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {myGrade?.students.map((grade) => {
-            if (grade.studentId === mainUser) {
-              return renderRow(grade);
-            }
+          {filteredData?.map((item) => {
+            return renderRow(item);
           })}
         </tbody>
         <button onClick={imprimir} style={{ marginTop: "100px" }}>
