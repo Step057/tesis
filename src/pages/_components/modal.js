@@ -8,6 +8,7 @@ const StudentModal = () => {
   const [showModal, setShowModal] = useState(false);
   const [students, setStudents] = useState([]);
   const studentIds = [12345, 54321, 98765];
+  const modalRef = useRef(null); // reference for the modal container
 
   useEffect(() => {
     axios
@@ -28,20 +29,29 @@ const StudentModal = () => {
     setShowModal(true);
   };
 
-  const itemIdRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setShowModal(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showModal]); // add/remove event listener on showModal change
 
   return (
     <div>
       <button onClick={handleOpenModal}>ver ID's</button>
       {showModal && (
-        <div className="modal">
+        <div className="modal" ref={modalRef}>
           <div className="modal-content">
             <div className="modal-header">
               <h3>Student ID</h3>
             </div>
             <div
               className="modal-body"
-              style={{ paddingTop: "500px", display: "flex" }}
+              style={{ paddingTop: "10px", display: "flex" }}
             >
               <ul>
                 {students.map((item, index) => (
@@ -58,7 +68,6 @@ const StudentModal = () => {
                     </li>
                     <input
                       key={index}
-                      ref={itemIdRef}
                       value={item._id}
                       readOnly
                       style={{ width: "250px" }}
