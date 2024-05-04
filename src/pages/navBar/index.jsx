@@ -1,12 +1,13 @@
 import React from "react";
 import Logo from "../../images/logo.jpg";
 import { Link, NavLink } from "react-router-dom";
+import "./styles.css";
 
 const Index = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand rotate-on-click" to="/">
           <img
             src={Logo}
             alt="Logo"
