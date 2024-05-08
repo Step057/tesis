@@ -1,0 +1,41 @@
+.modal {
+  position: absolute;
+  background-color: rebeccapurple;
+  left: 25%;
+  top: 33%;
+  width: 30%;
+  height: 40%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+}
+
+.modal-content {
+  background-color: hwb(122 35% 52%);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 5px;
+  width: 80px;
+  font-size: 11px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Modal from "./_components/modal";
+import "./styles.css";
 
 const CalificacionesTabla = () => {
   const [notas, setNotas] = useState(Array(10).fill("")); // Estado para almacenar las notas ingresadas
@@ -40,8 +41,11 @@ const CalificacionesTabla = () => {
       .then((response) => {
         setLista(response.data);
         setSubjectID(
-          response.data.find((subject) => subject.name === mainUser.materia)
-            ?._id
+          response.data.find(
+            (subject) =>
+              subject.name === mainUser.materia ||
+              subject.name === mainUser[0]?.materia
+          )?._id
         );
         console.log("Response data:", response.data);
       })
@@ -154,7 +158,7 @@ const CalificacionesTabla = () => {
     8
   ).toFixed(1);
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="wrapper">
       <h1>Libreta de calificaciones </h1>
       <table
         style={{
@@ -187,7 +191,7 @@ const CalificacionesTabla = () => {
         </thead>
         <tbody>
           <tr>
-            <td rowSpan="1">{mainUser?.materia}</td>
+            <td rowSpan="1">{mainUser?.materia || mainUser[0]?.materia}</td>
             {notas.map((nota, index) => (
               <td key={index}>
                 <input

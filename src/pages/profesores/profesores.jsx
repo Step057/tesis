@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import Modal from "./_components/modalAdmin/modal";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import "./styles.css";
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +23,7 @@ const LoginBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const AdminBox = styled.div`
   position: relative;
   border-radius: 20px;
@@ -75,18 +77,38 @@ const InputBox = styled.div`
   }
 `;
 
-const LoginForm = () => {
+const Profesores = () => {
   const [email, setEmail] = useState("");
-  const [emailAdmin, setEmailAdmin] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordAdmin, setPasswordAdmin] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [passwordAdmin, setPasswordAdmin] = useState("");
+  const [emailAdmin, setEmailAdmin] = useState("");
+  const [showSubjectsModal, setShowSubjectsModal] = useState(false);
+  const [userLogged, setUserLogged] = useState([]);
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef(null); // reference for the modal container
-  const navigate = useNavigate();
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+  const handleCloseModalSubjects = () => {
+    setShowSubjectsModal(false);
+  };
+  const handleOnChooseSubject = () => {
+    setUserLogged(
+      users?.filter(
+        (user) => user.correo === email && user.materia === selectedSubject
+      )
+    );
+    navigate("/calificaciones", {
+      state: {
+        mainUser: users?.filter(
+          (user) => user.correo === email && user.materia === selectedSubject
+        ),
+      },
+    });
   };
 
   const handleOpenModal = () => {
@@ -107,21 +129,22 @@ const LoginForm = () => {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-  const handleEmailChangeAdmin = (event) => {
-    setEmailAdmin(event.target.value);
-  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+
   const handlePasswordChangeAdmin = (event) => {
     setPasswordAdmin(event.target.value);
+  };
+
+  const handleEmailChangeAdmin = (event) => {
+    setEmailAdmin(event.target.value);
   };
 
   const handleRememberMeChange = (event) => {
     setRememberMe(event.target.checked);
   };
-
   const handleAdminPass = () => {
     if (emailAdmin === "admin@admin.com" && passwordAdmin === "admin123") {
       navigate("/Registro");
@@ -129,24 +152,20 @@ const LoginForm = () => {
       alert("Credenciales incorrectas");
     }
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      users?.find(
-        (user) => user.correo === email && user.contraseña === password
-      )
-    ) {
-      localStorage.setItem(
-        "myVariableKey",
-        users?.find(
-          (user) => user.correo === email && user.contraseña === password
-        )._id
-      );
 
-      navigate("/home");
-    } else {
-      console.log("userNotFound");
+    const userFiltered = users?.filter((user) => user.correo === email);
+    setUserLogged(userFiltered);
+
+    if (userFiltered.length < 2) {
+      navigate("/calificaciones", {
+        state: {
+          mainUser: userLogged,
+        },
+      });
+    } else if (userFiltered.length > 1) {
+      setShowSubjectsModal(true);
     }
   };
 
@@ -155,6 +174,7 @@ const LoginForm = () => {
       .get("http://localhost:3000/api/get")
       .then((response) => {
         setUsers(response.data);
+        console.log("Response data:", response.data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -164,12 +184,12 @@ const LoginForm = () => {
   return (
     <Container>
       <div className="login-light"></div>
-      <LoginBox>
+      <LoginBox className="loginBox">
         <form onSubmit={handleSubmit}>
           <div className="light"></div>
 
           <h2>Ingreso al portal</h2>
-          <h2>Alumnos</h2>
+          <h2>profesores </h2>
           <InputBox>
             <span className="icon">
               <ion-icon name="mail"></ion-icon>
@@ -208,7 +228,9 @@ const LoginForm = () => {
             </label>
             <a href="/clave"> Olvidaste la contraseña?</a>
           </div>
-          <button type="submit">Login</button>
+          <button type="submit" className="login">
+            Login
+          </button>
           <div className="register-link">
             <p>No tienes cuenta aún?</p>
           </div>
@@ -216,13 +238,13 @@ const LoginForm = () => {
         </form>
       </LoginBox>
       {showModal && (
-        <div className="modal" ref={modalRef}>
-          <div className="modal-content">
-            <div className="modal-header">
+        <div className="modalA" ref={modalRef}>
+          <div className="modal-contentA">
+            <div className="modal-headerA">
               <h3>Se necesita acceso para registrar usuarios:</h3>
             </div>
             <div
-              className="modal-body"
+              className="modal-bodyA"
               style={{ paddingTop: "10px", display: "flex" }}
             >
               <AdminBox>
@@ -245,9 +267,54 @@ const LoginForm = () => {
                 </form>
               </AdminBox>
             </div>
-            <div className="modal-footer">
+            <div className="modal-footerA">
               <button onClick={handleAdminPass}>Ingresar</button>
               <button onClick={handleCloseModal}>Cerrar</button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showSubjectsModal && (
+        <div className="modalSubject" ref={modalRef}>
+          <div className="modal-contentSubject">
+            <div className="modal-headerSubject">
+              <h3>Escoga una materia a cual ingresar ingresar:</h3>
+            </div>
+            <div
+              className="modal-bodySubject"
+              style={{ paddingTop: "10px", display: "flex" }}
+            >
+              <div class="text-center">
+                {userLogged?.map((subject) => (
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="eye_color_yes"
+                      value={subject?.materia}
+                      onChange={(event) =>
+                        setSelectedSubject(event.target.value)
+                      }
+                      name="eye_color"
+                      required
+                    />
+                    <label class="form-check-label" for="eye_color_yes">
+                      {subject?.materia}
+                    </label>
+                  </div>
+                ))}
+                <input
+                  type="radio"
+                  name="eye_color"
+                  style={{ display: "none" }}
+                  required
+                />
+                <div class="invalid-feedback">Please select an option.</div>
+              </div>
+            </div>
+            <div className="modal-footerSubject" style={{ gap: "10px" }}>
+              <button onClick={handleCloseModalSubjects}>Cerrar</button>
+              <button onClick={handleOnChooseSubject}>Aceptar</button>
             </div>
           </div>
         </div>
@@ -256,4 +323,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Profesores;

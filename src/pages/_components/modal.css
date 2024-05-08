@@ -1,4 +1,4 @@
-.modal {
+.modalS {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,30 +8,30 @@
   width: 550px;
   margin-left: 10%;
   height: 40%;
-  margin-top: 40px;
-  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 140px;
+  background-color: transparent;
   z-index: 10;
   border-radius: 25px;
 }
 
-.modal-content {
+.modal-contentS {
   background-color: hwb(122 35% 52%);
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 25px;
 }
 
-.modal-header {
+.modal-headerS {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.modal-body {
+.modal-bodyS {
   list-style: none;
   padding: 0;
 }
 
-.modal-footer {
+.modal-footerS {
   display: flex;
   justify-content: flex-end;
 }
@@ -43,4 +43,11 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 550px) {
+  .modalS{
+      width: 20%;
+      left: 30%;
+  }
 }

@@ -1,0 +1,59 @@
+.loginBox {
+  position: relative;
+}
+
+.modalA {
+  position: absolute;
+  background-color: transparent;
+  left: 35%;
+  top: 43%;
+  width: 30%;
+  height: 40%;
+  border-radius: 25px;
+}
+
+.modal-contentA {
+  background-color: hwb(120 18% 81%);
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.modal-headerA {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.modal-bodyA {
+  list-style: none;
+  padding: 10px;
+}
+
+.modal-footerA {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+button {
+  padding: 5px;
+  width: 80px;
+  font-size: 11px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+    .modalA{
+        width: 50%;
+        left: 25%;
+    }
+}
+@media only screen and (max-width: 550px) {
+    .modalA{
+        width: 70%;
+        left: 15%;
+    }
+}

@@ -12,7 +12,7 @@ import Footer from "./pages/footer";
 import Clave from "./pages/clave";
 import Home from "./pages/home";
 import NavBar from "./pages/navBar";
-import Profesores from "./pages/profesores";
+import Profesores from "./pages/profesores/profesores";
 import CalificacionesTabla from "./pages/calificaciones";
 
 function App() {
