@@ -14,7 +14,7 @@ const CalificacionesTabla = () => {
   const [subjectID, setSubjectID] = useState();
   const location = useLocation();
   const mainUser = location.state?.mainUser;
-
+  console.log("--asdlj", location);
   const handleChange = (index, value) => {
     if (
       value === "" ||
@@ -141,7 +141,7 @@ const CalificacionesTabla = () => {
       // Handle unexpected errors
     }
   };
-
+  console.log("---helo", mainUser);
   const imprimir = () => {
     window.print();
   };

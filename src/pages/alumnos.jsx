@@ -90,7 +90,9 @@ const LoginForm = () => {
   };
 
   const handleOpenModal = () => {
+    console.log("----");
     setShowModal(true);
+    console.log("ss", showModal);
   };
 
   const handleClickOutside = (event) => {
@@ -174,12 +176,7 @@ const LoginForm = () => {
             <span className="icon">
               <ion-icon name="mail"></ion-icon>
             </span>
-            <input
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
+            <input type="email" value={email} onChange={handleEmailChange} />
             <label>Email</label>
             <div className="input-line"></div>
           </InputBox>
@@ -191,7 +188,6 @@ const LoginForm = () => {
               type="password"
               value={password}
               onChange={handlePasswordChange}
-              required
             />
             <label>Password</label>
             <div className="input-line"></div>
@@ -212,7 +208,7 @@ const LoginForm = () => {
           <div className="register-link">
             <p>No tienes cuenta aún?</p>
           </div>
-          <button onClick={handleOpenModal}>Registrate</button>
+          <button onClick={() => handleOpenModal()}>Registrate</button>
         </form>
       </LoginBox>
       {showModal && (

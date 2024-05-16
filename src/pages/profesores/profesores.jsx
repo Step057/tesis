@@ -161,7 +161,7 @@ const Profesores = () => {
     if (userFiltered.length < 2) {
       navigate("/calificaciones", {
         state: {
-          mainUser: userLogged,
+          mainUser: users?.filter((user) => user.correo === email),
         },
       });
     } else if (userFiltered.length > 1) {
