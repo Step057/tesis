@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./styles.css";
 
 const StudentsTable = () => {
   const [students, setStudents] = useState([]);
@@ -59,9 +60,12 @@ const StudentsTable = () => {
   };
   console.log(students);
   return (
-    <div style={{ textAlign: "center" }}>
+    <div
+      style={{ textAlign: "center", backgroundSize: "cover" }}
+      className="wrapperA"
+    >
       <h1>Libreta de calificaciones </h1>
-      <table class="table" style={{ width: "80%", margin: "20px auto" }}>
+      <table class="table" style={{ width: "100%", margin: "20px auto" }}>
         <thead>
           <tr>
             <th scope="col">Materia</th>

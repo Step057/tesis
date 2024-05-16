@@ -75,7 +75,10 @@ const Registro = () => {
   };
 
   const handleChange = (event) => {
-    if (event.target.name !== "contraseña_confirmar") {
+    if (
+      event.target.name !== "contraseña" ||
+      event.target.name !== "contraseña_confirmar"
+    ) {
       setFormData({ ...formData, [event.target.name]: event.target.value });
       if (event.target.name === "nombre") {
         setSubject({ ...subject, teacher: event.target.value });
@@ -88,8 +91,7 @@ const Registro = () => {
       }
     }
   };
-  console.log("---", userExist);
-  console.log("---", formData);
+  console.log("1111", formData?.contraseña?.length);
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -108,7 +110,12 @@ const Registro = () => {
             </div>
           )}
           <div className="row g-3">
-            {!users?.find((user) => user.correo === formData?.correo) && (
+            {!users?.find(
+              (user) =>
+                user.correo === formData?.correo &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div className="col-md-6">
                 <label htmlFor="inputNombre" className="form-label">
                   Nombre
@@ -123,7 +130,12 @@ const Registro = () => {
                 />
               </div>
             )}
-            {!users?.find((user) => user.correo === formData?.correo) && (
+            {!users?.find(
+              (user) =>
+                user.correo === formData?.correo &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div className="col-md-6">
                 <label htmlFor="inputapeliido" className="form-label">
                   Apellido
@@ -138,7 +150,12 @@ const Registro = () => {
                 />
               </div>
             )}
-            {!users?.find((user) => user.correo === formData?.correo) && (
+            {!users?.find(
+              (user) =>
+                user.correo === formData?.correo &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div className="col-md-6">
                 <label htmlFor="id" className="form-label">
                   ID_usuario (opcional)
@@ -153,7 +170,12 @@ const Registro = () => {
                 />
               </div>
             )}
-            {users?.find((user) => user.correo === formData?.correo) && (
+            {users?.find(
+              (user) =>
+                user.correo !== null &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div>
                 Este correo ya fue registrado,añada materias o cursos, si
                 necesita actualizacion de datos contacte al administrador.
@@ -171,7 +193,12 @@ const Registro = () => {
                 onChange={handleChange}
               />
             </div>
-            {!users?.find((user) => user.correo === formData?.correo) && (
+            {!users?.find(
+              (user) =>
+                user.correo === formData?.correo &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div className="col-md-6">
                 <label htmlFor="inputPassword4" className="form-label">
                   Contraseña
@@ -185,7 +212,12 @@ const Registro = () => {
                 />
               </div>
             )}
-            {!users?.find((user) => user.correo === formData?.correo) && (
+            {!users?.find(
+              (user) =>
+                user.correo === formData?.correo &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div className="col-md-6">
                 <label htmlFor="inputPasswordConfirm" className="form-label">
                   Ingrese de nuevo la contraseña:
@@ -199,7 +231,12 @@ const Registro = () => {
                 />
               </div>
             )}
-            {!users?.find((user) => user.correo === formData?.correo) && (
+            {!users?.find(
+              (user) =>
+                user.correo === formData?.correo &&
+                user?.correo === formData?.correo &&
+                user?.correo
+            ) && (
               <div className="col-md-6">
                 <label className="form-label">Rol:</label>
                 <div>
@@ -230,7 +267,12 @@ const Registro = () => {
             )}
 
             {(rol === "profesor" ||
-              users?.find((user) => user.correo === formData?.correo)) && (
+              users?.find(
+                (user) =>
+                  user.correo === formData?.correo &&
+                  user?.correo === formData?.correo &&
+                  user?.correo
+              )) && (
               <div className="col-md-6">
                 <label htmlFor="inputNombre" className="form-label">
                   Materia
@@ -263,6 +305,10 @@ const Registro = () => {
 
           <div className="col-12">
             <button
+              disabled={
+                !formData?.contraseña?.length ||
+                formData?.contraseña !== formData?.contraseña_confirmar
+              }
               type="submit"
               className="btn btn-outline-dark mb-3"
               style={{ width: "200px", height: "50px" }}

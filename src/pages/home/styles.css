@@ -1,0 +1,18 @@
+@media only screen and (max-width: 600px) {
+    .wrapperA {
+      width: 150%;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(to right, #4f730d, #a9b88d);
+      background-size: cover;
+    }
+  }
+  /* @media only screen and (min-width: 500px) and (max-width: 650px) {
+    .wrapper {
+      width: 200%;
+      height: 100vh;
+      text-align: center;
+      background: linear-gradient(to right, #4f730d, #a9b88d);
+      background-size: cover;
+    }
+  } */

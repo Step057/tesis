@@ -13,7 +13,8 @@ const Vision = () => {
     <div
       style={{
         maxWidth: "800px",
-        margin: "0 auto",
+        margin: "40px auto",
+        marginBottom: "60px",
         color: isVisible ? "#000" : "transparent",
         transition: "color 1s ease-in-out",
       }}

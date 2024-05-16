@@ -31,7 +31,9 @@ function App() {
         className="text-light"
         style={{
           minHeight: "100vh",
+          minWidth: "100%",
           background: "linear-gradient(to right, #4f730d, #a9b88d)",
+          backgroundSize: "cover",
         }}
       >
         <BrowserRouter>
