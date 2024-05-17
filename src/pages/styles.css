@@ -31,7 +31,7 @@
 }
 
 .modal-contentSubject {
-  background-color: hwb(88 61% 32%);
+  background-color: hwb(86 18% 79%);
   border-radius: 5px;
   padding: 15px;
 }
@@ -50,4 +50,51 @@
 .modal-footerSubject {
   display: flex;
   justify-content: flex-end;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 550px;
+  margin-left: 30%;
+  height: 45%;
+  margin-top: 140px;
+  background-color: transparent;
+  z-index: 10;
+  border-radius: 25px;
+}
+
+.modal-content {
+  background-color: hwb(120 18% 81%);
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.modal-body {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  padding: 5px;
+  width: 80px;
+  font-size: 11px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

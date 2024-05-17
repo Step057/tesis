@@ -208,7 +208,7 @@ const LoginForm = () => {
           <div className="register-link">
             <p>No tienes cuenta aún?</p>
           </div>
-          <button onClick={() => handleOpenModal()}>Registrate</button>
+          <button onClick={handleOpenModal}>Registrate</button>
         </form>
       </LoginBox>
       {showModal && (
